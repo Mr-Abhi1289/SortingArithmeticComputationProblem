@@ -1,3 +1,5 @@
+declare -A arithmaticOperation
+
 read -p "Enter first input :" firstInput
 read -p "Enter second input:" secondInput
 read -p "Enter third input :" thirdInput
@@ -12,3 +14,9 @@ echo "Result:" $resultTwo
 
 resultThree=`echo "scale=2;$firstInput % $secondInput + $thirdInput" | bc`
 echo "Result:" $resultThree
+
+
+arithmaticOperation[result]=$result
+arithmaticOperation[resultOne]=$resultOne
+arithmaticOperation[resultTwo]=$resultTwo
+arithmaticOperation[resultThree]=$resultThree
