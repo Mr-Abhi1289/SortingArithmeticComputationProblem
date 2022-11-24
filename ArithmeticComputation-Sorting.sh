@@ -1,10 +1,8 @@
-
 declare -A arithmaticOperation
 
 read -p "Enter first input :" firstInput
 read -p "Enter second input:" secondInput
 read -p "Enter third input :" thirdInput
-
 
 result1=`echo "scale=2;$firstInput + $secondInput * $thirdInput" | bc`
 echo "Result:" $result1
@@ -23,9 +21,28 @@ arithmaticOperation[result2]=$result2
 arithmaticOperation[result3]=$result3
 arithmaticOperation[result4]=$result4
 
-
 for((index=0; index<=${#arithmaticOperation[@]}; index++))
 do
   array[index]=${arithmaticOperation[result$((index+1))]}
 done
+
 echo "${array[@]}"
+
+function descendingOrderSort()
+{
+	for(( index=0; index<${#array[@]}; index ++ ))
+	do
+		for(( indexOne=0; indexOne<${#array[@]}-1; indexOne ++ ))
+		do
+			if (( $(echo "${array[indexOne+1]} > ${array[indexOne]}" | bc -l ) ))
+			then
+				temp=${array[indexOne]}
+				array[indexOne]=${array[indexOne+1]}
+				array[indexOne+1]=$temp
+			fi
+		done
+	done
+	echo "To data descending order"${array[@]}
+}
+
+descendingOrderSort ${array[@]}
